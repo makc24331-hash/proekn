@@ -132,3 +132,64 @@
 4.  Если не работает — проверьте, правильно ли записана флешка.
 
 Если описать, что происходит на экране, когда вы выбираете флешку, можно дать более точный совет
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Счетчик кликов</title>
+</head>
+<body>
+    <button id="clickMe">Нажми меня!</button>
+    <p id="click-counter">Количество нажатий: 0</p>
+    
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+clickMeButton.addEventListener('click', function() {
+    clickCount++;
+    clickCounter.textContent = `Количество нажатий: ${clickCount}`;
+    
+    // Анимация кнопки
+    this.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        this.style.transform = 'scale(1)';
+    }, 100);
+});
+
+
+
+let clickCount = localStorage.getItem('clickCount') || 0;
+const clickMeButton = document.getElementById('clickMe');
+const clickCounter = document.getElementById('click-counter');
+
+// Обновляем отображение при загрузке
+clickCounter.textContent = `Количество нажатий: ${clickCount}`;
+
+clickMeButton.addEventListener('click', function() {
+    clickCount++;
+    clickCounter.textContent = `Количество нажатий: ${clickCount}`;
+    localStorage.setItem('clickCount', clickCount);
+});
+
+
+
+
+
+let clickCount = 0;
+const clickMeButton = document.getElementById('clickMe');
+const clickCounter = document.getElementById('click-counter');
+
+// Проверка, что элементы существуют
+if (clickMeButton && clickCounter) {
+    clickMeButton.addEventListener('click', function() {
+        clickCount++;
+        clickCounter.textContent = `Количество нажатий: ${clickCount}`;
+    });
+} else {
+    console.error('Элементы не найдены!');
+}
+
